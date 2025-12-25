@@ -23,7 +23,7 @@ class DataIngestion:
     def initiateDataIngetion(self):
         logging.info("Entered the data ingestion method")
         try:
-            df=pd.read_csv('notebook\StudentsPerformance.csv')
+            df=pd.read_csv('notebook/StudentsPerformance.csv')
             logging.info('Read the dataset as df')
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
@@ -45,14 +45,12 @@ class DataIngestion:
         
    
 if __name__=="__main__":
-    obj = DataIngestion()
-    train_data, test_data = obj.initiateDataIngetion()
+    obj=DataIngestion()
+    train_data,test_data=obj.initiateDataIngetion()
 
-    data_transformation = DataTransformation()
-    train_arr, test_arr, preprocessor_path = data_transformation.initiateDataTransformation(
-        train_data, test_data
-    )
+    data_transformation=DataTransformation()
+    train_arr,test_arr,_=data_transformation.initiateDataTransformation(train_data,test_data)
 
-    modelTrainer = ModelTrainer()
-    print(modelTrainer.initiateModelTrainer(train_arr, test_arr))
+    modeltrainer=ModelTrainer()
+    print(modeltrainer.initiateModelTrainer(train_arr,test_arr))
 
